@@ -4,13 +4,13 @@ from conan.tools.cmake import CMake
 from os import path
 
 
-class GraphicsConan(ConanFile):
-    name = "graphics"
+class Handy(ConanFile):
+    name = "handy"
     license = "MIT"
     author = "adnn"
-    url = "https://github.com/Adnn/graphics"
-    description = "Graphics rendering generic library, both software and with OpenGL"
-    topics = ("opengl", "graphics", "2D", "3D")
+    url = "https://github.com/ShredEagle/handy"
+    description = "Handy classes and functions"
+    topics = ("utils")
     settings = "os", "compiler", "build_type", "arch"
     options = {
         "shared": [True, False],
@@ -19,21 +19,12 @@ class GraphicsConan(ConanFile):
     default_options = {
         "shared": False,
         "build_tests": False,
-        "glad:gl_version": "4.1",
-        # Note: macos only provides GL_ARB_texture_storage and GL_ARB_internalformat_query
-        "glad:extensions": "GL_KHR_debug, GL_ARB_texture_storage, GL_ARB_clear_texture",
     }
 
     requires = (
         ("boost/1.77.0"),
-        ("freetype/2.11.0"),
-        ("glad/0.1.34"),
-        ("glfw/3.3.6"),
-        ("nlohmann_json/3.9.1"),
-        ("spdlog/1.9.2"),
-        ("utfcpp/3.2.1"),
 
-        ("math/38aee3b8df@adnn/develop"),
+        ("math/4234fd5aaf@adnn/develop"),
     )
 
     build_policy = "missing"

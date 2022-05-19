@@ -1,8 +1,9 @@
-#include <graphics/Timer.h>
-#include <renderer/VertexSpecification.h>
+#include <handy/vector_utils.h>
+#include <vector>
 
 int main()
 {
-    ad::graphics::Timer timer;
+    std::vector<int> aVector;
+    ad::getStoredSize(aVector);
     return EXIT_SUCCESS;
 }

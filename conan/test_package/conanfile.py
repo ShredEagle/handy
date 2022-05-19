@@ -4,7 +4,7 @@ from conans import ConanFile, tools
 from conan.tools.cmake import CMake, CMakeToolchain
 
 
-class GraphicsTestConan(ConanFile):
+class HandyTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake_paths", "cmake_find_package", "CMakeToolchain"
 
