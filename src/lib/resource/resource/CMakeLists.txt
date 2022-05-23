@@ -3,7 +3,6 @@ set(TARGET_NAME resource)
 set(${TARGET_NAME}_HEADERS
     ResourceLocator.h
     ResourceManager.h
-    #${CMAKE_CURRENT_BINARY_DIR}/build_config.h
 )
 
 source_group(TREE ${CMAKE_CURRENT_LIST_DIR}
@@ -21,11 +20,6 @@ add_custom_target(${TARGET_NAME}_IDE
 )
 
 cmc_target_current_include_directory(${TARGET_NAME})
-
-target_include_directories(${TARGET_NAME}
-    INTERFACE
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}> # For generated header
-)
 
 
 ##
