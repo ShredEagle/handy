@@ -24,8 +24,6 @@ class Handy(ConanFile):
 
     requires = (
         ("boost/1.79.0"),
-
-        ("math/0b50669a8b@adnn/develop"),
     )
 
     build_policy = "missing"
@@ -38,7 +36,7 @@ class Handy(ConanFile):
         "submodule": "recursive",
     }
 
-    python_requires="shred_conan_base/0.0.1@adnn/develop"
+    python_requires="shred_conan_base/0.0.2@adnn/develop"
     python_requires_extend="shred_conan_base.ShredBaseConanFile"
 
 
@@ -59,21 +57,15 @@ class Handy(ConanFile):
         copy(self, "*.txt", folder, self.export_sources_folder)
 
 
-    def source(self):
-        # we can see that the CMakeLists.txt is inside the source folder
-        cmake = load(self, "CMakeLists.txt")
-
-
-    def build(self):
-        # The build() method can also access the CMakeLists.txt in the source folder
-        path = path.join(self.source_folder, "CMakeLists.txt")
-        cmake = load(self, path)
-
-
     def _configure_cmake(self):
         cmake = CMake(self)
         cmake.configure()
         return cmake
+
+
+    def build(self):
+        cmake = self._configure_cmake()
+        cmake.build()
 
 
     def configure(self):
@@ -84,11 +76,6 @@ class Handy(ConanFile):
         self._generate_cmake_configfile()
 
 
-    def build(self):
-        cmake = self._configure_cmake()
-        cmake.build()
-
-
     def package(self):
         cmake = self._configure_cmake()
         cmake.install()
@@ -97,3 +84,5 @@ class Handy(ConanFile):
     def package_info(self):
         if self.folders.build_folder:
             self.cpp_info.builddirs = [self.folders.build_folder]
+        elif self.folders._base_package:
+            self.cpp_info.builddirs = [self.folders._base_package]
