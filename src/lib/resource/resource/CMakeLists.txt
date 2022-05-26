@@ -30,6 +30,7 @@ cmc_find_dependencies(FILE CMakeFinds.cmake.in)
 
 target_link_libraries(${TARGET_NAME}
     INTERFACE
+        ad::handy
         ad::platform)
 
 

@@ -1,26 +1,61 @@
-# common #
+# common
 *.*~
 
-# Build folders #
+# Cmake
 /build/
 /build_*/
 /build-*/
+
+# Conan
 /conan/test_package/build/
+/conan/graph_info.json
+CMakeUserPresets.json
 
 # Clang tooling #
 .clangd/
 compile_commands.json
 
-# Vim #
+# Vim
 *.swp
 *.swo
 
-# Node/NPM #
-node_modules/
+# Prerequisites
+*.d
 
-# OS X#
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
 
-## system ##
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+
+# OS X
+
+## system
 *.DS_Store
 
 ## XCode ##
@@ -30,9 +65,10 @@ node_modules/
 xcuserdata/
 *.dSYM
 
-# Windows #
 
-## system ##
+# Windows
+
+## system
 Thumbs.db
 
 ## Visual Studio ##
