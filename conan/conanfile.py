@@ -48,7 +48,7 @@ class Handy(ConanFile):
             # avoid path.join, on Windows it outputs '\', which is a string escape sequence.
             #config.write("include(\"{}\")\n".format("${CMAKE_CURRENT_LIST_DIR}/conan_paths.cmake"))
             config.write("set({} {})\n".format("BUILD_tests", self.options.build_tests))
-            config.write("set(CMAKE_EXPORT_COMPILE_COMMANDS 1)\n".format("BUILD_tests", self.options.build_tests))
+            config.write("set(CMAKE_EXPORT_COMPILE_COMMANDS 1)\n")
 
 
     def export_sources(self):
@@ -82,7 +82,8 @@ class Handy(ConanFile):
 
 
     def package_info(self):
+        self.cpp_info.set_property("cmake_find_mode", "none")
         if self.folders.build_folder:
-            self.cpp_info.builddirs = [self.folders.build_folder]
-        elif self.folders._base_package:
-            self.cpp_info.builddirs = [self.folders._base_package]
+            self.cpp_info.builddirs.append(self.folders.build_folder)
+        else:
+            self.cpp_info.builddirs.append(path.join('lib', 'cmake'))
