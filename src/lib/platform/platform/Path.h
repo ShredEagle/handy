@@ -8,7 +8,7 @@ namespace ad {
 namespace platform {
 
 
-filesystem::path getExecutableFilePath();
+//filesystem::path getExecutableFilePath();
 
 
 } // namespace platform

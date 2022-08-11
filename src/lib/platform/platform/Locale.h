@@ -8,7 +8,7 @@ namespace ad {
 namespace platform {
 
 
-std::string getSystemLanguage();
+//std::string getSystemLanguage();
 
 
 } // namespace platform

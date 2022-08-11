@@ -33,12 +33,8 @@ cmc_target_current_include_directory(${TARGET_NAME})
 
 cmc_find_dependencies(FILE CMakeFinds.cmake.in)
 
-target_link_libraries(${TARGET_NAME}
-    INTERFACE
-        Boost::filesystem
-    PRIVATE
-        Boost::locale
-)
+#target_link_libraries(${TARGET_NAME}
+#)
 
 
 ##

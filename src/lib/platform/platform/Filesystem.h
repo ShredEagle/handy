@@ -1,17 +1,10 @@
 #pragma once
 
-#include <boost/filesystem.hpp>
+#include <filesystem>
 
 
 namespace ad {
 
-namespace filesystem = boost::filesystem;
-
-//namespace filesystem {
-//
-//    using boost::filesystem::path path;
-//
-//
-//} // namespace filesystem
+namespace filesystem = std::filesystem;
 
 } // namespace ad

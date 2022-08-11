@@ -21,9 +21,7 @@ class Handy(ConanFile):
         "build_tests": False,
     }
 
-    requires = (
-        ("boost/1.79.0"),
-    )
+    #requires = ()
 
     build_policy = "missing"
     generators = "CMakeDeps", "CMakeToolchain"
