@@ -34,5 +34,5 @@ class Handy(ConanFile):
     }
 
 
-    python_requires="shred_conan_base/0.0.3@adnn/stable"
+    python_requires="shred_conan_base/0.0.5@adnn/stable"
     python_requires_extend="shred_conan_base.ShredBaseConanFile"
