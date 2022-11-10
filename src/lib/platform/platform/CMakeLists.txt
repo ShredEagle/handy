@@ -33,8 +33,14 @@ cmc_target_current_include_directory(${TARGET_NAME})
 
 cmc_find_dependencies(FILE CMakeFinds.cmake.in)
 
-#target_link_libraries(${TARGET_NAME}
-#)
+if(TARGET gtk::gtk)
+    message(NOTICE "-- Using GTK for dialog")
+    target_compile_definitions(${TARGET_NAME} PRIVATE PLATFORM_GTK_DIALOG)
+    target_link_libraries(${TARGET_NAME}
+        PRIVATE gtk::gtk
+    )
+endif()
+
 
 
 ##

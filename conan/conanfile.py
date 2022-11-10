@@ -15,10 +15,12 @@ class Handy(ConanFile):
     options = {
         "shared": [True, False],
         "build_tests": [True, False],
+        "gtk_dialog": [True, False],
     }
     default_options = {
         "shared": False,
         "build_tests": False,
+        "gtk_dialog": False
     }
 
     #requires = ()
@@ -32,6 +34,11 @@ class Handy(ConanFile):
         "revision": "auto",
         "submodule": "recursive",
     }
+
+    def requirements(self):
+        if self.options.gtk_dialog:
+            #Gtk version should also be set using -o gtk:version=x
+            self.requires("gtk/system")
 
 
     python_requires="shred_conan_base/0.0.5@adnn/stable"
