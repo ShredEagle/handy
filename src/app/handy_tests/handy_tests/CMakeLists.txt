@@ -9,6 +9,7 @@ set(${TARGET_NAME}_SOURCES
 
     Base64_tests.cpp
     Crc_tests.cpp
+    FunctionTraits_tests.cpp
     StringId_tests.cpp
 )
 

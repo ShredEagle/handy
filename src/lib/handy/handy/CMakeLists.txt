@@ -5,6 +5,7 @@ set(${TARGET_NAME}_HEADERS
     Base64.h
     Bitmask.h
     Crc.h
+    FunctionTraits.h
     Guard.h
     Observer.h
     Pool.h
