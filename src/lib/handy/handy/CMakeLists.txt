@@ -12,6 +12,7 @@ set(${TARGET_NAME}_HEADERS
     random.h
     StringId.h
     StringId_Interning.h
+    StringUtilities.h
     tuple_utils.h
     vector_utils.h
     ZeroOnMove.h

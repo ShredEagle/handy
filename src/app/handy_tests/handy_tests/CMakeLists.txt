@@ -11,6 +11,7 @@ set(${TARGET_NAME}_SOURCES
     Crc_tests.cpp
     FunctionTraits_tests.cpp
     StringId_tests.cpp
+    StringUtilities_tests.cpp
 )
 
 add_executable(${TARGET_NAME}
