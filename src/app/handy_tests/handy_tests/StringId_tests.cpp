@@ -134,6 +134,9 @@ SCENARIO("StringId reverse lookup.")
 }
 
 
+constexpr void disableUnusedWarning(StringId)
+{}
+
 SCENARIO("StringId constexpr-ness")
 {
     // It is more a "ensure it compiles" test.
@@ -141,10 +144,12 @@ SCENARIO("StringId constexpr-ness")
     {
         using namespace literals;
         constexpr StringId sid = "This is a StringId literal"_sid;
+        disableUnusedWarning(sid);
     }
 
     THEN("Constexpr StringId can be constructed from a string literal.")
     {
         constexpr StringId sid{"This is a plain string literal"};
+        disableUnusedWarning(sid);
     }
 }
