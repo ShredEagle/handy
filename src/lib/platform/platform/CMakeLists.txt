@@ -10,8 +10,13 @@ set(${TARGET_NAME}_HEADERS
 set(${TARGET_NAME}_SOURCES
     Gui.cpp
     Locale.cpp
-    Path.cpp
 )
+
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    list(APPEND ${TARGET_NAME}_SOURCES Path-windows.cpp)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    list(APPEND ${TARGET_NAME}_SOURCES Path-linux.cpp)
+endif ()
 
 source_group(TREE ${CMAKE_CURRENT_LIST_DIR}
              FILES ${${TARGET_NAME}_HEADERS} ${${TARGET_NAME}_SOURCES}
