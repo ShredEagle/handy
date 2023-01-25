@@ -14,7 +14,7 @@ namespace resource {
 
 // TODO Make this class safer to use (currently it is very easy to get dangling references).
 // TODO Ad 2022/02/10 There should be a separate case where the loader has states 
-// (i.e. an instance is stored withing the ResourceManager data members).
+// (i.e. an instance is stored within the ResourceManager data members).
 /// \attention The resources are currently hosted directly by the ResourceManager, not 
 /// inside any sharing mechanism.
 /// It implies that the resource handles are only valid while the ResourceManager is alive,

@@ -1,6 +1,7 @@
 set(TARGET_NAME resource)
 
 set(${TARGET_NAME}_HEADERS
+    ResourceFinder.h
     ResourceLocator.h
     ResourceManager.h
 )
