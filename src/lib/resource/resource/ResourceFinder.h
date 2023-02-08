@@ -27,6 +27,9 @@ public:
 
     std::optional<filesystem::path> find(const filesystem::path &aAsset) const;
 
+    filesystem::path pathFor(const filesystem::path &aAsset) const
+    { return *find(aAsset); }
+
 private:
     std::vector<filesystem::path> mPrefixes;
 };

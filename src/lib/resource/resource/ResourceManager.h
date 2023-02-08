@@ -19,7 +19,7 @@ namespace resource {
 /// inside any sharing mechanism.
 /// It implies that the resource handles are only valid while the ResourceManager is alive,
 /// and while it contains them. This is currently left as the user responsibility.
-template <class T_resource, auto F_loader>
+template <class T_resource, class T_locator, auto F_loader>
 class ResourceManager
 {
 public:
@@ -32,7 +32,7 @@ public:
     ResourceManager & operator=(ResourceLocator &&) = delete;
 
     template <class ...VT_loaderParams>
-    const T_resource & load(filesystem::path aAssetPath, const ResourceLocator & aLocator, VT_loaderParams &&...);
+    const T_resource & load(filesystem::path aAssetPath, const T_locator & aLocator, VT_loaderParams &&...);
     /// \attention Invalidates all references to the removed resource.
     void remove(filesystem::path aAssetPath);
 
@@ -44,9 +44,9 @@ private:
 //
 // Implementations
 //
-template <class T_resource, auto F_loader>
+template <class T_resource, class T_locator, auto F_loader>
 template <class ...VT_loaderParams>
-const T_resource & ResourceManager<T_resource, F_loader>::load(filesystem::path aAssetPath, const ResourceLocator & aLocator, VT_loaderParams &&... aLoaderParams)
+const T_resource & ResourceManager<T_resource, T_locator, F_loader>::load(filesystem::path aAssetPath, const T_locator & aLocator, VT_loaderParams &&... aLoaderParams)
 {
     handy::StringId resourceId{aAssetPath.string()};
 
@@ -63,8 +63,8 @@ const T_resource & ResourceManager<T_resource, F_loader>::load(filesystem::path 
 }
 
 
-template <class T_resource, auto F_loader>
-void ResourceManager<T_resource, F_loader>::remove(filesystem::path aAssetPath)
+template <class T_resource, class T_locator, auto F_loader>
+void ResourceManager<T_resource, T_locator, F_loader>::remove(filesystem::path aAssetPath)
 {
     mResourceTable.erase(handy::StringId{aAssetPath.string()});
 }
