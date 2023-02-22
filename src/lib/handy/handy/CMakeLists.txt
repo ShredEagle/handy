@@ -14,6 +14,7 @@ set(${TARGET_NAME}_HEADERS
     StringId_Interning.h
     StringUtilities.h
     tuple_utils.h
+    Url.h
     vector_utils.h
     ZeroOnMove.h
 
