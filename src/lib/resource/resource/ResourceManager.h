@@ -36,6 +36,13 @@ public:
     /// \attention Invalidates all references to the removed resource.
     void remove(filesystem::path aAssetPath);
 
+    /// \warning Allow mutating access, which is dangerous, but required to allow for hot-reloading of resources.
+    auto begin()
+    { return mResourceTable.begin(); }
+
+    auto end()
+    { return mResourceTable.end(); }
+
 private:
     std::unordered_map<handy::StringId, T_resource> mResourceTable;
 };
