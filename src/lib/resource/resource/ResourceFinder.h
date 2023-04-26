@@ -25,10 +25,9 @@ public:
         mPrefixes{aFirst, aLast}
     {}
 
-    std::optional<filesystem::path> find(const filesystem::path &aAsset) const;
+    std::optional<filesystem::path> find(const filesystem::path & aAsset) const;
 
-    filesystem::path pathFor(const filesystem::path &aAsset) const
-    { return *find(aAsset); }
+    filesystem::path pathFor(const filesystem::path & aAsset) const;
 
 private:
     std::vector<filesystem::path> mPrefixes;
@@ -48,6 +47,19 @@ inline std::optional<filesystem::path> ResourceFinder::find(const filesystem::pa
     return std::nullopt;
 }
 
+
+inline filesystem::path ResourceFinder::pathFor(const filesystem::path & aAsset) const
+{
+    if(std::optional<filesystem::path> found = find(aAsset); found)
+    {
+        return *found;
+    }
+    else
+    {
+        throw std::invalid_argument{
+            "ResourceFinder cannot find a path for resource '" + aAsset.string() + "'."};
+    }
+}
 
 } // namespace resource
 } // namespace ad
