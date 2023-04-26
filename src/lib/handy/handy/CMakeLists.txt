@@ -7,6 +7,7 @@ set(${TARGET_NAME}_HEADERS
     Crc.h
     FunctionTraits.h
     Guard.h
+    MovableAtomic.h
     Observer.h
     Pool.h
     random.h
