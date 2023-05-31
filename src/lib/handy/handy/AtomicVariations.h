@@ -23,4 +23,16 @@ struct MovableAtomic : public std::atomic<T>
 };
 
 
+template <class T>
+struct CopyableAtomic : public std::atomic<T>
+{
+    using std::atomic<T>::atomic;
+    using std::atomic<T>::operator=;
+
+    CopyableAtomic(CopyableAtomic & aOther) :
+        std::atomic<T>{aOther.load()}
+    {};
+};
+
+
 } // namespace ad

@@ -2,12 +2,12 @@ set(TARGET_NAME handy)
 
 set(${TARGET_NAME}_HEADERS
     array_utils.h
+    AtomicVariations.h
     Base64.h
     Bitmask.h
     Crc.h
     FunctionTraits.h
     Guard.h
-    MovableAtomic.h
     Observer.h
     Pool.h
     random.h
