@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include <string>
-
 
 namespace ad {
 namespace platform {
