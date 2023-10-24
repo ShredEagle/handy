@@ -62,9 +62,8 @@ class [[nodiscard]] ResourceGuard
 {
 public:
     typedef std::function<void(T &)> release_fun;
-    typedef std::remove_const_t<T> non_const_T;
 
-    ResourceGuard(non_const_T aResource, release_fun aReleaser):
+    ResourceGuard(T aResource, release_fun aReleaser):
         mResource{std::move(aResource)},
         // Note: bind a copy, not a reference. Otherwise move sematic would lead to UB.
         mGuard{std::bind(aReleaser, mResource)}
@@ -83,28 +82,17 @@ public:
         mGuard = Guard{std::bind(aReleaser, mResource)};
     }
 
-    /*implicit*/ operator T& ()
-    {
-        return mResource;
-    }
-
     /*implicit*/ operator const T& () const
     {
         return mResource;
     }
-
-    T & get()
-    {
-        return mResource;
-    }
-
     const T & get() const
     {
         return mResource;
     }
 
 private:
-    non_const_T mResource;
+    T mResource;
     Guard mGuard;
 };
 
