@@ -3,6 +3,7 @@
 
 #include <array>
 #include <string>
+#include <cstdint>
 
 
 // Some implementation relying on a table, which is quite compact.
