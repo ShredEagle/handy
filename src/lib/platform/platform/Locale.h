@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 namespace ad {
 namespace platform {
 

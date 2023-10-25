@@ -7,6 +7,7 @@
 
 namespace ad {
 
+
 class [[nodiscard]] Guard
 {
 public:
@@ -15,7 +16,6 @@ public:
     Guard(release_fun aReleaser) :
         mReleaser(std::move(aReleaser))
     {}
-
 
     // Non-copyable
     Guard(const Guard &) = delete;
@@ -86,6 +86,7 @@ public:
     {
         return mResource;
     }
+
     const T & get() const
     {
         return mResource;
