@@ -10,6 +10,9 @@ namespace ad {
 
 class [[nodiscard]] Guard
 {
+    // So it can disable the Guard
+    template <class> friend class ResourceGuard;
+
 public:
     typedef std::function<void(void)> release_fun;
 
@@ -53,7 +56,6 @@ private:
     static void turnOff()
     {}
 
-private:
     release_fun mReleaser;
 };
 
@@ -73,6 +75,16 @@ public:
     ResourceGuard(ResourceGuard && aOther) = default;
     ResourceGuard & operator=(ResourceGuard &&) = default;
 
+    /*implicit*/ operator const T& () const
+    {
+        return mResource;
+    }
+
+    const T & get() const
+    {
+        return mResource;
+    }
+
     /// \brief Allows to change the resource managed by the ResourceGuard.
     ///
     /// The previous resource will be released.
@@ -82,14 +94,13 @@ public:
         mGuard = Guard{std::bind(aReleaser, mResource)};
     }
 
-    /*implicit*/ operator const T& () const
+    /// \brief Release ownership of the resource.
+    T release()
     {
-        return mResource;
-    }
-
-    const T & get() const
-    {
-        return mResource;
+        T resource; // Default constructed resource to replace mResource
+        std::swap(mResource, resource);
+        mGuard.mReleaser = Guard::turnOff; 
+        return resource;
     }
 
 private:
