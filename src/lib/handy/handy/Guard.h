@@ -97,8 +97,18 @@ public:
     /// \brief Release ownership of the resource.
     T release()
     {
-        T resource; // Default constructed resource to replace mResource
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+        // Note: If T is a built-in type, then default-initialization would result in an unitialized value
+        // Yet, this value is the resource value of a moved-from object, so unitialized is okay.
+        T resource;
         std::swap(mResource, resource);
+        // An alternative would be list-initalization (T resource{}), which would zero-init the builtins.
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
         mGuard.mReleaser = Guard::turnOff; 
         return resource;
     }
