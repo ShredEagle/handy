@@ -97,7 +97,9 @@ public:
     /// \brief Release ownership of the resource.
     T release()
     {
-#ifdef __GNUC__
+// We only want this for GCC, not clang
+// see: https://stackoverflow.com/q/38499462/1027706
+#if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
 #endif
@@ -106,7 +108,7 @@ public:
         T resource;
         std::swap(mResource, resource);
         // An alternative would be list-initalization (T resource{}), which would zero-init the builtins.
-#ifdef __GNUC__
+#if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic pop
 #endif
         mGuard.mReleaser = Guard::turnOff; 
