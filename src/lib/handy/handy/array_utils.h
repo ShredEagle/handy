@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <type_traits>
 
 
@@ -23,7 +24,33 @@ namespace detail
                       "Only arithmetic types or arrays at the moment.");
     };
 
+
+    template <class T_element, std::size_t N_size, std::size_t... VN_indices>
+    std::array<T_element, N_size> make_filled_array_impl(
+        std::index_sequence<VN_indices...>,
+        T_element aValue)
+    {
+        return {{
+            (VN_indices, aValue)...
+        }};
+    }
+
 } // namespace detail
+
+
+
+/// @brief Construct an array of N_size elements, filled with `aValue`.
+/// @tparam T_element Array element type.
+/// @tparam N_size Array size.
+template <class T_element, std::size_t N_size>
+std::array<T_element, N_size> make_filled_array(T_element aValue)
+{
+    return detail::make_filled_array_impl<T_element, N_size>(
+        std::make_index_sequence<N_size>{},
+        aValue);
+}
+
+
 
 /// \brief Combines all dimensions in an array (the total number of elements stored)
 /// \return 1 for scalar types !
