@@ -25,6 +25,15 @@ namespace detail
     };
 
 
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-value"
+#endif
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-value"
+#endif
+
     template <class T_element, std::size_t N_size, std::size_t... VN_indices>
     std::array<T_element, N_size> make_filled_array_impl(
         std::index_sequence<VN_indices...>,
@@ -34,6 +43,13 @@ namespace detail
             (VN_indices, aValue)...
         }};
     }
+
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic pop
+#endif
 
 } // namespace detail
 
