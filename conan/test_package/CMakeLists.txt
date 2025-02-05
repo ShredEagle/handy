@@ -4,4 +4,4 @@ project(PackageTest CXX)
 find_package(Handy REQUIRED COMPONENTS handy platform resource)
 
 add_executable(example example.cpp)
-target_link_libraries(example PRIVATE ad::handy)
+target_link_libraries(example PRIVATE ad::handy ad::platform ad::resource)
