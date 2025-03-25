@@ -3,7 +3,6 @@ add_subdirectory(lib/platform/platform)
 
 add_subdirectory(lib/resource/resource)
 
-option(BUILD_tests "Build the demo applications" ON)
-if(BUILD_tests)
+if(BUILD_TESTING)
     add_subdirectory(app/handy_tests/handy_tests)
 endif()
