@@ -3,7 +3,7 @@
 Heterogeneous pieces of code that come in handy.
 
 Growing organically, it is composed of several modules:
-* `handy`: Miscellaneous low-level types and operations, ranging from `hashes` and `bitmasks` to `string` utilities and `Pool`.
+* `handy`: Miscellaneous low-level types and operations, ranging from *hashes* and *bitmasks* to *string utilities* and *pools*.
 * `platform`: Platform abstraction (system paths, locale, gui).
 * `resource`: Prototype of a generic `ResourceManager` and related utilities.
 
